@@ -14,7 +14,7 @@ object Parser extends App {
   val size_fichier = fichier_list.size
 
 
-  println("la taille du fichier est de ")
+  println("taille du fichier est de ")
   println(size_fichier)
 
   println("Les coordonnées du point supérieur du jardin sont ")
