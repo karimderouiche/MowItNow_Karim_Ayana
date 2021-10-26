@@ -14,7 +14,6 @@ object Parser extends App {
 
   val size_fichier = fichier_list.size
 
-  //test test
 
   println("taille du fichier est de ")
   println(size_fichier)
