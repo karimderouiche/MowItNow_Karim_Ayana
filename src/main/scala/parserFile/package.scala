@@ -17,10 +17,10 @@ package object errortests extends App {
 
   //on capte ici les erreurs de instruction, pour ne pas avoir d'autres lettres que DGA (pattern matching)
   val instruction: = i match {
-    case "D" => "pivoter la tondeuse de 90° à droite"
-    case "G" => "pivoter la tondeuse de 90° à gauche"
-    case "A" => "Avancer"
-    case _ => "Commande invalide" // catch-all case
+    case "D" => "la tondeuse a été pivoté à droite"
+    case "G" => "la tondeuse a été pivoté à gauche"
+    case "A" => "la tondeuse a avancé"
+    case _ => "Commande invalide" // catch-all other case
   }
 
   //on gère les erreurs de positions qui doivent être que des valeurs numériques de 0 à 9 (pattern matching)
