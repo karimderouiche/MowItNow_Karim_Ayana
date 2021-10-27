@@ -1,9 +1,12 @@
 package deplacement
-import structure.Coordonnees
-import  structure.Tondeuse
-import structure.Instructions
-import structure.Pelouse
 
-class DeplacementTondeuse {
+import structure.Tondeuse
+import structure.Coordonnees
+
+import parserFile.ParserTest
+
+
+class DeplacementTondeuse(coordonnees: Coordonnees){
+
 
 }
