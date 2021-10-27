@@ -3,7 +3,7 @@
 
 import scala.io.Source
 package object errortests extends App {
-  //test de validité du fichier test
+  //test de validité du fichier test & les commandes par tondeuse
   def main(args: Array[String]): Unit = {
     var lines = Source.fromResource("test").getLines.toList // pour accéder au fichier test dans les Ressources
     val len: Int = lines.length
