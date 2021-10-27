@@ -2,14 +2,15 @@ package parserFile
 
 import scala.io.Source
 import scala.util.Try
-import structure._
+import structure.{Coordonnees, Instructions}
 
 
 // On crée l'objet parser qui va analyser un fichier txt de données
 class parserObj {
 
   // La variable lines correspond à la liste des lignes du fichier
-  var lines = Source.fromResource("data.txt").getLines.toList // pour accéder au fichier test dans les Ressources
+  val lines = Source.fromResource("data.txt").getLines.toList // pour accéder au fichier test dans les Ressources
+
 
   def global_checks(): Int = {
     // La fonction global check vient regarder si le fichier est au bon format. Elle renvoie 0 si le format est mauvais
@@ -47,10 +48,22 @@ class parserObj {
   }
 
   // On crée une fonction qui va renvoyer les coordonnées des tondeuses
-//  def getCoordonneesTondeuses(): Instructions{}
+  def getCoordonneesTondeuses(): Unit = {
+    // Il faut changer le type de données sortant de "Unit" à List[Coordonnees] pour parfaire l'analyse
+    val coordonneesTondeusesList = lines.drop(1).zipWithIndex.filter(_._2 % 2 == 0).map(_._1)
+
+    println(coordonneesTondeusesList)
+
+  }
 
   // On crée un fonction qui va renvoyer les instructions des tondeuses
-//  def getInstructionsTondeuse(): Tondeuse{}
+  def getInstructionsTondeuse(): Instructions = {
+
+    val instructionsTondeusesList:List[String] = lines.drop(1).zipWithIndex.filter(_._2 % 2 == 1).map(_._1)
+
+    Instructions(instructionsTondeusesList)
+
+  }
 
 
 

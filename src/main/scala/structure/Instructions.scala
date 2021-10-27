@@ -1,5 +1,5 @@
 package structure
 
-class Instructions(a: List[String]){
+case class Instructions(a: List[String]){
 
 }
