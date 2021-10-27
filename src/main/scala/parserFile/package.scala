@@ -22,8 +22,8 @@ package object errortests extends App {
   }
 
   //on gère les erreurs de positions qui doivent être que des valeurs numériques de 0 à 9 (pattern matching)
-  val positions = i match {
-    case positions:Int => "Les coordonnées de la tondeuse sont ($x , $y)"
+  val Coordonnees = i match {
+    case i:Int => "Les coordonnées de la tondeuse sont (" + x + "," + y + ")"
     case _ => "Les coordonnées doivent être des valeurs numériques dans la plage [0; 9]"
   }
 
