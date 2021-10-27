@@ -1,5 +1,5 @@
 package structure
 
-class Instructions(a: String){
+class Instructions(a: List[String]){
 
 }
