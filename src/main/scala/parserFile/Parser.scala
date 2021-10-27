@@ -1,6 +1,7 @@
 package parserFile
 import scala.io.Source
 import parserFile.Tondeuse             //mettre le nom de fichier de tondeuse
+import structure.Coordonnees
 
 object Parser extends App {
 

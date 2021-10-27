@@ -2,6 +2,8 @@
 //import org.scalatest.flatspec.AnyFlatSpec
 
 import scala.io.Source
+import structure.Coordonnees
+
 package object errortests extends App {
   //test de validité du fichier test & les commandes par tondeuse
   def main(args: Array[String]): Unit = {
@@ -13,8 +15,8 @@ package object errortests extends App {
     else () // à mettre le reste de programme car il n'y a pas de souci de fichier test
   }
 
-  //on capte ici les erreurs de direction, pour ne pas avoir d'autres lettres que DGA (pattern matching)
-  val direction = i match {
+  //on capte ici les erreurs de instruction, pour ne pas avoir d'autres lettres que DGA (pattern matching)
+  val instruction: = i match {
     case "D" => "pivoter la tondeuse de 90° à droite"
     case "G" => "pivoter la tondeuse de 90° à gauche"
     case "A" => "Avancer"
@@ -23,7 +25,7 @@ package object errortests extends App {
 
   //on gère les erreurs de positions qui doivent être que des valeurs numériques de 0 à 9 (pattern matching)
   val Coordonnees = i match {
-    case i:Int => "Les coordonnées de la tondeuse sont (" + x + "," + y + ")"
+    case i:Int => "Les coordonnées de la tondeuse sont (" + Coordonnees(x) + "," + Coordonnees(y) + ")"
     case _ => "Les coordonnées doivent être des valeurs numériques dans la plage [0; 9]"
   }
 
