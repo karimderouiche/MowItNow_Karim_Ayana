@@ -46,5 +46,12 @@ class parserObj {
 
   }
 
+  // On crée une fonction qui va renvoyer les coordonnées des tondeuses
+//  def getCoordonneesTondeuses(): Instructions{}
+
+  // On crée un fonction qui va renvoyer les instructions des tondeuses
+//  def getInstructionsTondeuse(): Tondeuse{}
+
+
 
 }
