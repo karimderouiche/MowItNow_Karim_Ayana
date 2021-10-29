@@ -32,13 +32,5 @@ object ParserTest extends App {
         nvCoord.move(tdz, instrTondeuses(i), Pelouse(maxPelouse))
       }
     }
-
   }
-
-
-
-
-
-
-
 }
