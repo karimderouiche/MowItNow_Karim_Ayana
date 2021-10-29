@@ -42,7 +42,6 @@ class parserObj {
           println("Les coordonnées de la pelouse ne sont pas numériques")
           Coordonnees(0,0,"N")
         }
-
     }
 
   }
@@ -98,7 +97,7 @@ class parserObj {
       else {
         // Dans le cas où les instructions ne sont pas bonnes on renvoie un pivotage vers la gauche par défaut.
         println("Les instructions ne sont pas bonnes pour la tondeuse")
-        instructionsList :+= Instructions(List("G"))
+        instructionsList :+= Instructions(List("G", "D"))
       }
     }
     // On revoie la liste des instructions
