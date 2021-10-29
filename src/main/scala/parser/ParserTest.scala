@@ -1,5 +1,5 @@
-package parserFile
-import parserFile.parserObj
+package parser
+import parser.parserFile
 import deplacement.DeplacementTondeuse
 import structure.{Pelouse, Tondeuse}
 import scala.reflect.io.File
@@ -7,25 +7,37 @@ import scala.reflect.io.File
 
 object ParserTest extends App {
 
-  val test0 = new parserObj()
+  // On instancie la classe parser
+  val parsedFile = new parserFile()
 
-  var test = test0.global_checks()
-  println(test)
+  if(parsedFile.global_checks() == 0){
+    println("Mauvais format du fichier de données")
+  } else {
+    val maxPelouse = parsedFile.getCoord()
+    if(maxPelouse.orientation == "S"){
+      println("Les coordonnées de la pelouse entrées dans le fichiers ne sont pas bonnes")
+    } else if(maxPelouse.orientation == "E"){
+      println("Les coordonnées de la pelouse ne sont pas numériques")
+    } else{
+      // On récupère les listes des coordonnées et des tondeuses
+      val coordTondeuses = parsedFile.getCoordonneesTondeuses()
+      val instrTondeuses = parsedFile.getInstructionsTondeuse()
 
-  val maxPelouse = test0.getCoord()
-  println("Le max de la pelouse est " + maxPelouse)
+      // On instancie la classe de déplacement de tondeuse
+      val nvCoord = new DeplacementTondeuse()
 
-  val coordTondeuses = test0.getCoordonneesTondeuses()
-  print("les tondeuses ont pour coord " + coordTondeuses)
+      for(i <- 0 until coordTondeuses.size){
+        val tdz:Tondeuse = Tondeuse(coordTondeuses(i), Pelouse(maxPelouse))
+        println("Tondeuse " + i + " ")
+        nvCoord.move(tdz, instrTondeuses(i), Pelouse(maxPelouse))
+      }
+    }
 
-  val instrTondeuses = test0.getInstructionsTondeuse()
-  println("\n les instructions sont " + instrTondeuses)
+  }
 
-  val nvCoord = new DeplacementTondeuse()
 
-  val tdz:Tondeuse = Tondeuse(coordTondeuses(1), Pelouse(maxPelouse))
 
-  nvCoord.move(tdz, instrTondeuses(1), Pelouse(maxPelouse))
+
 
 
 

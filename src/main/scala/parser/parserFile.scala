@@ -1,4 +1,4 @@
-package parserFile
+package parser
 
 import scala.io.Source
 import scala.util.Try
@@ -7,7 +7,7 @@ import scala.collection.immutable._
 
 
 // On crée l'objet parser qui va analyser un fichier txt de données
-class parserObj {
+class parserFile {
 
   // La variable lines correspond à la liste des lignes du fichier
   val lines = Source.fromResource("data.txt").getLines.toList // pour accéder au fichier test dans les Ressources
@@ -18,7 +18,6 @@ class parserObj {
     // et 1 si le format est bon.
     val len: Int = lines.length
     if (len % 2 != 1) { //on vérifie ici si le fichier test a le bon nombre des lignes : 1 pour la taille de terrain et 2 pour chaque tondeuse
-      println("Mauvais format du fichier de données")
       0
     }
     else {
@@ -32,15 +31,13 @@ class parserObj {
     // On définit ci-après, les coordonnées de la pelouse grâce à la première ligne du fichier.
 
     if (coordonneesPelouse.size != 2) {
-      println("Les coordonnées de la pelouse entrées dans le fichiers ne sont pas bonnes")
-      Coordonnees(0,0,"N")
+      Coordonnees(0,0,"S")
     } else {
       if( Try(coordonneesPelouse(0).toInt).isSuccess && Try(coordonneesPelouse(1).toInt).isSuccess) {
         Coordonnees(coordonneesPelouse(0).toInt,coordonneesPelouse(1).toInt, "N")
       } else
         {
-          println("Les coordonnées de la pelouse ne sont pas numériques")
-          Coordonnees(0,0,"N")
+          Coordonnees(0,0,"E")
         }
     }
 
@@ -63,7 +60,7 @@ class parserObj {
       // On vérifie si les coordonnées ont bien été entrés, si ce n'est pas le cas on renvoie une coordonnée vide.
       if (coord.size != 3) {
         println("Les coordonnées de la pelouse entrées dans le fichiers ne sont pas bonnes")
-        listCoord :+= Coordonnees(0,0,"N")
+        listCoord :+= Coordonnees(-1,-1,"N")
       } else {
         //On vérifie que les deux premiers caractères sont bien numériques.
         if( Try(coord(0).toInt).isSuccess && Try(coord(1).toInt).isSuccess) {
@@ -71,7 +68,7 @@ class parserObj {
         } else
         {
           println("Les coordonnées de la pelouse ne sont pas numériques")
-          listCoord :+= Coordonnees(0,0,"N")
+          listCoord :+= Coordonnees(-1,-1,"N")
         }
       }
     }
