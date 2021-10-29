@@ -1,7 +1,10 @@
 package parserFile
+import parserFile.parserObj
+import deplacement.DeplacementTondeuse
+import structure.{Pelouse, Tondeuse}
+
 import scala.reflect.io.File
 
-import parserFile.parserObj
 
 object ParserTest extends App {
 
@@ -18,5 +21,13 @@ object ParserTest extends App {
 
   val instrTondeuses = test0.getInstructionsTondeuse()
   println("\n les instructions sont " + instrTondeuses)
+
+  val nvCoord = new DeplacementTondeuse()
+
+  val tdz:Tondeuse = Tondeuse(coordTondeuses(1), Pelouse(maxPelouse))
+
+  nvCoord.move(tdz, instrTondeuses(1), Pelouse(maxPelouse))
+
+
 
 }
