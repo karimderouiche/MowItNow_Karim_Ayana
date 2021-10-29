@@ -1,5 +1,5 @@
 package structure
 
-class Tondeuse(coordonnees: Coordonnees){
+case class Tondeuse(coordonnees: Coordonnees){
 
 }
