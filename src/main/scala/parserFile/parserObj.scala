@@ -10,7 +10,7 @@ class parserObj {
 
   // La variable lines correspond à la liste des lignes du fichier
   val lines = Source.fromResource("data.txt").getLines.toList // pour accéder au fichier test dans les Ressources
-
+  val coordonneesPelouse = lines(0).split(" ")
 
   def global_checks(): Int = {
     // La fonction global check vient regarder si le fichier est au bon format. Elle renvoie 0 si le format est mauvais
@@ -26,10 +26,9 @@ class parserObj {
     }
   }
 
-  def getMaxPelouse(): Coordonnees = {
+  def getCoord(): Coordonnees = {
     // On crée un nouvelle fonction qui nous permettra de retourner les coordonnées de la pelouse.
     // On définit ci-après, les coordonnées de la pelouse grâce à la première ligne du fichier.
-    val coordonneesPelouse = lines(0).split(" ")
 
     if (coordonneesPelouse.size != 2) {
       println("Les coordonnées de la pelouse entrées dans le fichiers ne sont pas bonnes")
@@ -48,20 +47,44 @@ class parserObj {
   }
 
   // On crée une fonction qui va renvoyer les coordonnées des tondeuses
-  def getCoordonneesTondeuses(): Unit = {
-    // Il faut changer le type de données sortant de "Unit" à List[Coordonnees] pour parfaire l'analyse
+  def getCoordonneesTondeuses(): List[Coordonnees]= {
+    // La fonction va donc renvoyer une liste de coordonnées
+
+    //On récupère ici les coordonnées du fichier texte de données
     val coordonneesTondeusesList = lines.drop(1).zipWithIndex.filter(_._2 % 2 == 0).map(_._1)
 
-    println(coordonneesTondeusesList)
+    //On crée ici une liste de coordonnées vide que l'on va remplir au fur et à mesure
+    var listCoord =  List[Coordonnees]()
 
+    // On crée une boucle for qui va parcourir les coordonnées, vérifier quelles sont bonnes et les ajouter à la liste.
+    for(coord0 <- coordonneesTondeusesList) {
+      // On crée la variable coord qui va créer une liste pour chaque tondeuse (x,y,Direction)
+      val coord = coord0.split(" ")
+      // On vérifie si les coordonnées ont bien été entrés, si ce n'est pas le cas on renvoie une coordonnée vide.
+      if (coord.size != 3) {
+        println("Les coordonnées de la pelouse entrées dans le fichiers ne sont pas bonnes")
+        listCoord :+= Coordonnees(0,0,"N")
+      } else {
+        //On vérifie que les deux premiers caractères sont bien numériques.
+        if( Try(coord(0).toInt).isSuccess && Try(coord(1).toInt).isSuccess) {
+          listCoord :+= Coordonnees(coord(0).toInt,coord(1).toInt, coord(2).toString)
+        } else
+        {
+          println("Les coordonnées de la pelouse ne sont pas numériques")
+          listCoord :+= Coordonnees(0,0,"N")
+        }
+      }
+    }
+    //On revoie alors la liste des coordonnées
+    listCoord
   }
 
   // On crée un fonction qui va renvoyer les instructions des tondeuses
-  def getInstructionsTondeuse(): Instructions = {
+  def getInstructionsTondeuse(): List[String] = {
 
     val instructionsTondeusesList:List[String] = lines.drop(1).zipWithIndex.filter(_._2 % 2 == 1).map(_._1)
 
-    Instructions(instructionsTondeusesList)
+    instructionsTondeusesList
 
   }
 

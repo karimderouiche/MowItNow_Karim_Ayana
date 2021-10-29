@@ -10,13 +10,13 @@ object ParserTest extends App {
   var test = test0.global_checks()
   println(test)
 
-  val maxPelouse = test0.getMaxPelouse()
-  println(maxPelouse)
+  val maxPelouse = test0.getCoord()
+  println("Le max de la pelouse est " + maxPelouse)
 
   val coordTondeuses = test0.getCoordonneesTondeuses()
-  print(coordTondeuses)
+  print("les tondeuses ont pour coord " + coordTondeuses)
 
   val instrTondeuses = test0.getInstructionsTondeuse()
-  println(instrTondeuses)
+  println("\n les instructions sont " + instrTondeuses)
 
 }

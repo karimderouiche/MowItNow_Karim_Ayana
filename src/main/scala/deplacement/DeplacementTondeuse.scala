@@ -8,7 +8,7 @@ class DeplacementTondeuse {
 
   def move(tondeuse: Tondeuse, instructions: Instructions, pelouse: Pelouse): Unit = {
 
-    for(instruction <- instructions.a) {
+    for(instruction <- instructions.instrucs) {
       instruction match {
         case "A" => tondeuse.coordonnees.orientation match
         {

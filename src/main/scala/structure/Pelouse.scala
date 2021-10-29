@@ -1,5 +1,5 @@
 package structure
 
-class Pelouse(coinSuperieur: Coordonnees) {
+case class Pelouse(coinSuperieur: Coordonnees) {
 
 }
