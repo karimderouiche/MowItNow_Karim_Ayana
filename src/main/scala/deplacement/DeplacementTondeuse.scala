@@ -1,7 +1,7 @@
 package deplacement
 
 import structure.{Coordonnees, Instructions, Pelouse, Tondeuse}
-import parserFile.ParserTest
+import parser.ParserTest
 
 
 class DeplacementTondeuse {
@@ -18,8 +18,6 @@ class DeplacementTondeuse {
           case "E" => tondeuse.coordonnees.x = tondeuse.coordonnees.x + 1
           case _ => println("Erreur, une orientation n'est pas comprise")
         }
-        println(tondeuse.coordonnees.x)
-        println(tondeuse.coordonnees.orientation)
         case "G" => tondeuse.coordonnees.orientation match
         {
           case "N" => tondeuse.coordonnees.orientation = "W"
@@ -39,7 +37,7 @@ class DeplacementTondeuse {
         case _ => println("Erreur, une instruction n'est pas comprise")
       }
     }
-    println("Tondeuse " + tondeuse.coordonnees.x + " " + + tondeuse.coordonnees.y + " " + tondeuse.coordonnees.orientation)
+    println(tondeuse.coordonnees.x + " " + + tondeuse.coordonnees.y + " " + tondeuse.coordonnees.orientation)
 
   }
 
