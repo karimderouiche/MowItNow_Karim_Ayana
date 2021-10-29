@@ -3,6 +3,7 @@ package parserFile
 import scala.io.Source
 import scala.util.Try
 import structure.{Coordonnees, Instructions}
+import scala.collection.immutable._
 
 
 // On crée l'objet parser qui va analyser un fichier txt de données
@@ -80,12 +81,28 @@ class parserObj {
   }
 
   // On crée un fonction qui va renvoyer les instructions des tondeuses
-  def getInstructionsTondeuse(): List[String] = {
+  def getInstructionsTondeuse(): List[Instructions] = {
 
     val instructionsTondeusesList:List[String] = lines.drop(1).zipWithIndex.filter(_._2 % 2 == 1).map(_._1)
+    val instrPossibles = List("A","G","D")
 
-    instructionsTondeusesList
+    var instructionsList = List[Instructions]()
 
+    for(instr <- instructionsTondeusesList){
+      var instrList:List[String] = instr.split("").toList
+
+      // On vérifie ci-après si la différence symétrique entre les deux listes d'instructions est nulle
+      if(instrList.toSet.filterNot(instrPossibles.toSet).size == 0) {
+        instructionsList :+= Instructions(instrList)
+      }
+      else {
+        // Dans le cas où les instructions ne sont pas bonnes on renvoie un pivotage vers la gauche par défaut.
+        println("Les instructions ne sont pas bonnes pour la tondeuse")
+        instructionsList :+= Instructions(List("G"))
+      }
+    }
+    // On revoie la liste des instructions
+    instructionsList
   }
 
 
