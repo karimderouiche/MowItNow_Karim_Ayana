@@ -11,11 +11,11 @@ object main extends App {
   // On instancie la classe parser
   val parsedFile = new parserFile()
 
-  // On vient tout d'abord effectuer qq vérifications de base issues de la méthode global_check
+  // On vient tout d'abord effectuer quelques vérifications de base issues de la méthode "global_check"
   if(parsedFile.global_checks() == 0){
     println("Mauvais format du fichier de données")
   } else {
-    // Si les vérifications sont bonne on passe à la vérification des coordonnées de la pelouse
+    // Si les vérifications sont bonnes on passe à la vérification des coordonnées de la pelouse
     val maxPelouse = parsedFile.getCoord()
     if(maxPelouse.orientation == "S"){
       // Si un "S" est renvoyé, nous avons programmé dans la méthode getCoord() que les coordonnées du fichiers ne sont

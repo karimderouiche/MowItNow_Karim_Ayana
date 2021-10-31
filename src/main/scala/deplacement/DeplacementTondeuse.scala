@@ -9,7 +9,7 @@ class DeplacementTondeuse {
     // On parcours chaque instruction de la tondeuse
     for(instruction <- instructions.instrucs) {
       instruction match {
-        // Dans un premier temps on vérifie la commande avancer ou tourner
+        // Dans un premier temps on vérifie la commande "avancer" ou "tourner"
         case "A" => tondeuse.coordonnees.orientation match
         {
           // Dans le cas d'un mouvement on modifie les coordonnées en fonction de l'orientation

@@ -6,19 +6,20 @@ import structure.{Coordonnees, Instructions}
 import scala.collection.immutable._
 
 
-// On crée l'objet parser qui va analyser un fichier txt de données
+// On crée l'objet parser qui va analyser un fichier .txt de données
 class parserFile {
 
   // La variable lines correspond à la liste des lignes du fichier
-  val lines = Source.fromResource("data.txt").getLines.toList // pour accéder au fichier test dans les Ressources
+  val lines = Source.fromResource("data.txt").getLines.toList // on accède au fichier test dans les Ressources
   // On définit ci-après, les coordonnées de la pelouse grâce à la première ligne du fichier data.
   val coordonneesPelouse = lines(0).split(" ")
 
   def global_checks(): Int = {
-    // La fonction global check vient regarder si le fichier est au bon format. Elle renvoie 0 si le format est mauvais
+    // La fonction global check vient vérifier si le fichier est au bon format. Elle renvoie 0 si le format est mauvais
     // et 1 si le format est bon.
     val len: Int = lines.length
-    if (len % 2 != 1) { //on vérifie ici si le fichier test a le bon nombre des lignes : 1 pour la taille de terrain et 2 pour chaque tondeuse
+    if (len % 2 != 1) { //on vérifie ici si le fichier test a le bon nombre des lignes : 1 pour la taille de terrain et
+      // 2 pour chaque tondeuse
       0
     }
     else {
@@ -28,8 +29,9 @@ class parserFile {
   }
 
   def getCoord(): Coordonnees = {
-    // On crée un nouvelle fonction qui nous permettra de retourner les coordonnées de la pelouse.
-    // on vérifie si la taille des coordonnées est bonne, si ce n'est pas bon on renvoie des coordonnées de 0 et une orientation Sud
+    // On crée une nouvelle fonction qui nous permettra de retourner les coordonnées de la pelouse.
+    // on vérifie si la taille des coordonnées est bonne, si ce n'est pas bon on renvoie des coordonnées de 0 et
+    // une orientation Sud (0,0,"S")
     if (coordonneesPelouse.size != 2) {
       Coordonnees(0,0,"S")
     } else {
@@ -53,18 +55,18 @@ class parserFile {
     //On crée ici une liste de coordonnées vide que l'on va remplir au fur et à mesure et qui sera renvoyée
     var listCoord =  List[Coordonnees]()
 
-    // On crée une boucle for qui va parcourir les coordonnées, vérifier qu'elles sont bonnes et les ajouter à la liste.
+    // On crée une boucle FOR qui va parcourir les coordonnées,vérifier qu'elles sont bonnes et les ajouter à la liste.
     for(coord0 <- coordonneesTondeusesList) {
       // On crée la variable coord qui va créer une liste pour chaque tondeuse (x,y,Direction)
       val coord = coord0.split(" ")
-      // On vérifie si les coordonnées ont bien été entrés, si ce n'est pas le cas on renvoie des coordonnées négatives
+      // On vérifie si les coordonnées ont bien été entrées, si ce n'est pas le cas on renvoie des coordonnées négatives
       // On commence par la taille.
       if (coord.size != 3) {
-        println("Les coordonnées de la pelouse entrées dans le fichiers ne sont pas bonnes")
+        println("Les coordonnées de la pelouse entrées dans le fichier ne sont pas bonnes")
         listCoord :+= Coordonnees(-1,-1,"N")
       } else {
         //On vérifie après que les deux premiers caractères sont bien numériques
-        // Si c'est le casa on ajoute à la liste des coordonnées les coordonnées du fichier data.
+        // Si c'est le cas on ajoute à la liste des coordonnées les coordonnées du fichier data.
         if( Try(coord(0).toInt).isSuccess && Try(coord(1).toInt).isSuccess) {
           listCoord :+= Coordonnees(coord(0).toInt,coord(1).toInt, coord(2))
         } else // Si ce n'est pas le cas on renvoie des coordonnées négatives dans la liste
@@ -100,7 +102,7 @@ class parserFile {
       }
       else {
         // Dans le cas où les instructions ne sont pas bonnes on renvoie un pivotage vers la gauche
-        // et vers la droite par défaut. La tondeuse ne bougera donc pas .
+        // et vers la droite par défaut. La tondeuse ne bougera donc pas (et garde sa direction initiale) .
         println("Les instructions ne sont pas bonnes pour la tondeuse")
         instructionsList :+= Instructions(List("G", "D"))
       }
